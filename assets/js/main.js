@@ -16,10 +16,13 @@ $(document).ready(function() {
             data: form_data,
             type: 'post',
             success: function(data) {
-                toastr.error(data);
+                toastr.success(data);
                 $(".JournalistName").val("");
                 $(".NewsText").val("");
                 $("#sortpicture").val("");
+            },
+            error:function(data){
+                toastr.error("Ошибка");
             }
 
         });
@@ -29,7 +32,7 @@ $(document).ready(function() {
         var NewsId = $(event.target).data("id");
         $.post("deletenews.php", { id: NewsId})
             .done(function(data) {
-                toastr.error(data);
+                toastr.success(data);
                 $(".article" + NewsId).hide();
             });
     });
